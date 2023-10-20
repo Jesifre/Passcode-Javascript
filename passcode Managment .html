@@ -113,5 +113,36 @@
       // If the passcode doesn't exist, return false
       return false;
     }
-  }
-    </script>
+}
+ // Create an instance of AuthenticationManager
+ const authenticationManager = new AuthenticationManager();
+
+// Button click event handler for generating a new passcode
+document.getElementById('generatePasscode').addEventListener('click', function() {
+  //This code adds an event listener to the HTML element with the ID 'generatePasscode'. 
+  const generatedPasscode = generateRandomPasscode();
+  authenticationManager.generatePasscode(generatedPasscode, 300000);
+   // 5 minutes in milliseconds and  updates the internal data structure
+  document.getElementById('message').innerText = `New passcode generated: ${generatedPasscode}`;
+});
+
+// Button click event handler for using the passcode
+document.getElementById('usePasscode').addEventListener('click', function() {
+  const enteredPasscode = document.getElementById('passcode').value;
+  const isValid = authenticationManager.validatePasscode(enteredPasscode);
+  document.getElementById('message').innerText = isValid ? 'Passcode is valid!' : 'Invalid passcode.';
+});
+
+// Function to generate a random passcode (for demonstration purposes)
+function generateRandomPasscode() {
+  return Math.floor //used to round down the generated number to the nearest integer, 
+  //ensuring that the result is an integer between 10000 and 99999 (both inclusive).
+  (10000 + Math.random() * 90000)// creating a random number between 10000 and 1000000
+  .toString(); // Generates a 5-digit passcode
+}
+</script>
+
+</body>
+</html>
+
+    
