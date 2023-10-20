@@ -78,5 +78,26 @@
           constructor() {
             this.passcodeMap = new Map();
           }
-        }
+        // The constructor method is a method that is automatically called when an object is created from the class
+        //this.passcodeMap = new Map();passcodeMap will be used to store passcodes
+        
+        generatePasscode(passcode, duration) {
+       // Check if the passcode already exists in the passcodeMap
+      if (this.passcodeMap.has(passcode)) {
+        // If it exists, update the timestamp and duration
+        const currentTime = new Date().getTime();
+        this.passcodeMap.set(passcode, {
+          timestamp: currentTime,
+          duration: duration
+        });
+      } else {
+        // If it doesn't exist, create a new entry with the timestamp and duration
+        const currentTime = new Date().getTime();
+        this.passcodeMap.set(passcode, {
+          timestamp: currentTime,
+          duration: duration
+        });
+      }
+    }
+}
     </script>
