@@ -99,5 +99,19 @@
         });
       }
     }
-}
+
+
+    validatePasscode(passcode) {
+      // Check if the passcode exists in the passcodeMap
+      if (this.passcodeMap.has(passcode)) {
+        // If it exists, retrieve passcodeData and current time
+        const currentTime = new Date().getTime();
+        const passcodeData = this.passcodeMap.get(passcode);
+        // Check if the time since the passcode was generated is less than its duration
+        return currentTime - passcodeData.timestamp < passcodeData.duration;
+      }
+      // If the passcode doesn't exist, return false
+      return false;
+    }
+  }
     </script>
